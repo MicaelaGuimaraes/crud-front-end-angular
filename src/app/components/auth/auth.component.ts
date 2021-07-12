@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit {
 
   login() {
     console.log(this.Form.controls['email'].value)
-    this.auth.login(this.Form.controls['email'].value).subscribe(response => {
+    this.auth.login(this.Form.value).subscribe(response => {
       console.log("response", response)
       const token = (<any>response).token;
       localStorage.setItem("jwt", token);

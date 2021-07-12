@@ -17,8 +17,8 @@ export class AuthService {
         private http: HttpClient,
     ) { }
 
-    login(data: string): Observable<Object> {
-        return this.http.post(this.api + this.Auth, {
+    login(data: any) {
+        return this.http.post(this.api + this.Auth, data, {
             headers: new HttpHeaders({
                 "Content-Type": "application/json"
             })

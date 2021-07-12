@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  api: 'https://localhost:44371/api/'
+  api: 'http://loggitest-env.eba-xpxrfy7n.us-east-1.elasticbeanstalk.com/api/'
 };
