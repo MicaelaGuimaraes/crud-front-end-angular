@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  api: 'http://api-logiin.micaelaguimaraes.com/api/'
+  api: 'https://api-logiin.micaelaguimaraes.com/api/'
 };
