@@ -25,8 +25,15 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthComponent } from './components/auth/auth.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './services/auth-guard.service';
+import { RouterModule } from '@angular/router';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
+
+export function token() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -61,8 +68,38 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     MatSortModule,
     ToastrModule.forRoot(),
     NgxMaskModule.forRoot(options),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: token
+      }
+    }),
+    RouterModule.forRoot([
+      {
+        path: "",
+        component: AuthComponent
+      },
+      {
+        path: "login",
+        component: AuthComponent
+      },
+      {
+        path: "home",
+        component: UserListComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "user/new",
+        component: UserComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "user/update/:id",
+        component: UserComponent,
+        canActivate: [AuthGuard]
+      }
+    ]),
   ],
-  providers: [],
+  providers: [AuthGuard],
 
   bootstrap: [AppComponent]
 })

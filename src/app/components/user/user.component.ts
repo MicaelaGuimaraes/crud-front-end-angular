@@ -39,7 +39,6 @@ export class UserComponent implements OnInit {
       this.user.getById(this.id).subscribe((res: User) => {
         this.UserName = res.name;
         this.Form.patchValue(res);
-        console.log(this.Form)
       });
     }
   }

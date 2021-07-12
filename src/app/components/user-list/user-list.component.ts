@@ -86,4 +86,9 @@ export class UserListComponent implements OnInit {
       );
     });
   }
+
+  Logout() {
+    localStorage.removeItem("jwt");
+    this.router.navigate(["login"]);
+  }
 }
