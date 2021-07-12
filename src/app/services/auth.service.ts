@@ -21,7 +21,7 @@ export class AuthService {
         return this.http.post(this.api + this.Auth, {
             headers: new HttpHeaders({
                 "Content-Type": "application/json"
-            }), data
+            })
         })
     }
 }
