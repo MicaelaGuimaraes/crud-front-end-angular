@@ -1,0 +1,48 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+<mat-card class="mt-2">
+    <mat-card-title>
+        <h3>
+            <strong *ngIf="UserName">Edit User - {{UserName}}</strong>
+            <strong *ngIf="!UserName">Add User</strong>
+        </h3>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="Form" (ngSubmit)="Save()">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-xs-12">
+                        <label>Name: <strong style="color: red" matTooltip="Required">*</strong></label>
+                        <input class="form-control" formControlName="name" name="name" placeholder="Name">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-12">
+                        <label>E-mail: <strong style="color: red" matTooltip="Required">*</strong></label>
+                        <input class="form-control" formControlName="email" name="email" placeholder="E-mail">
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xs-12">
+                        <label>Age: <strong style="color: red" matTooltip="Required">*</strong></label>
+                        <input class="form-control" type="number" formControlName="age" name="age" placeholder="Age">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-10 col-lg-10 col-xs-12">
+                        <label>
+                            Address: <strong style="color: red" matTooltip="Required">*</strong>
+                        </label>
+                        <input class="form-control" formControlName="address" name="address" placeholder="Address">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a role="button" class="btn btn-danger ml-1" href="home">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

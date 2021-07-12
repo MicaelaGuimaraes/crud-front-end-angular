@@ -1,0 +1,72 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+<mat-card class="mt-2">
+    <mat-card-title>
+        <h3>
+            <strong>List Users</strong>
+            <a role="button" class="btn btn-primary ml-4" href="user/new" matTooltip="Add User">
+                <i class="fas fa-user-plus"></i>
+            </a>
+            <button [disabled]="!listCheckBox.length" class="btn btn-danger ml-1" matTooltip="Delete"
+                (click)="disableColor()">
+                {{ listCheckBox.length > 0 ? listCheckBox.length : "" }} <i class="fas fa-trash"></i>
+            </button>
+        </h3>
+    </mat-card-title>
+    <mat-card-content>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-xs-12">
+                    <table style="width: 100%;" mat-table [dataSource]="dataSource " class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="Select">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td style="width: 70px;" mat-cell *matCellDef="let element">
+                                <mat-checkbox (change)="addItemRemove($event.checked, element)"></mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Cod">
+                            <th mat-header-cell *matHeaderCellDef> Cód. </th>
+                            <td style="width: 70px;" mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Email">
+                            <th mat-header-cell *matHeaderCellDef> Email </th>
+                            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Age">
+                            <th mat-header-cell *matHeaderCellDef> Age </th>
+                            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Address">
+                            <th mat-header-cell *matHeaderCellDef> Address </th>
+                            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Functions">
+                            <th mat-header-cell *matHeaderCellDef></th>
+                            <td style="width: 70px;" mat-cell *matCellDef="let element">
+                                <button class="btn btn-info" matTooltip="Edit" (click)="Edit(element.id)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </ng-container>
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </mat-card-content>
+</mat-card>
